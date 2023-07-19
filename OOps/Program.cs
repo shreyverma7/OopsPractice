@@ -11,5 +11,7 @@ internal class Program
         Console.WriteLine("Welcome To Inventory Management");
         InventoryManagementOperation details = new InventoryManagementOperation();
         details.ReadInventoryJson(inventory_filePath);
+        details.AddInventoryManagement("rice");
+        details.WriteToJsonFile(inventory_filePath);
     }
 }
