@@ -72,6 +72,58 @@ namespace OOps.InventoryManagement
             var json = JsonConvert.SerializeObject(list);
             File.WriteAllText(filePath, json);
         }
+        public void DeleteInventoryItem(string objectName, string itemName)
+        {
+            if (objectName.ToLower().Equals("rice"))
+            {
+                var itemToRemove = list.RiceList.FirstOrDefault(item => item.Name.Equals(itemName, StringComparison.OrdinalIgnoreCase));
+                if (itemToRemove != null)
+                {
+                    list.RiceList.Remove(itemToRemove);
+                    Console.WriteLine($"Deleted {objectName} item: {itemName}");
+                }
+                else
+                {
+                    Console.WriteLine($"No {objectName} item found with the name: {itemName}");
+                }
+            }
+            else if (objectName.ToLower().Equals("wheat"))
+            {
+                var itemToRemove = list.WheatList.FirstOrDefault(item => item.Name.Equals(itemName, StringComparison.OrdinalIgnoreCase));
+                if (itemToRemove != null)
+                {
+                    list.WheatList.Remove(itemToRemove);
+                    Console.WriteLine($"Deleted {objectName} item: {itemName}");
+                }
+                else
+                {
+                    Console.WriteLine($"No {objectName} item found with the name: {itemName}");
+                }
+            }
+            else if (objectName.ToLower().Equals("pulse"))
+            {
+                var itemToRemove = list.PulseList.FirstOrDefault(item => item.Name.Equals(itemName, StringComparison.OrdinalIgnoreCase));
+                if (itemToRemove != null)
+                {
+                    list.PulseList.Remove(itemToRemove);
+                    Console.WriteLine($"Deleted {objectName} item: {itemName}");
+                }
+                else
+                {
+                    Console.WriteLine($"No {objectName} item found with the name: {itemName}");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid object name. Supported names: rice, wheat, pulse");
+            }
+
+            WriteToJsonFile("D:\\Bridgelabz Problem statement\\OopsPractice\\OOps\\InventoryManagement\\InventoryMangementData.json");
+
+
+
+
+        }
 
     }
 }

@@ -13,5 +13,7 @@ internal class Program
         details.ReadInventoryJson(inventory_filePath);
         details.AddInventoryManagement("rice");
         details.WriteToJsonFile(inventory_filePath);
+        //deteting rice1 in rice
+        details.DeleteInventoryItem("rice", "rice1");
     }
 }
