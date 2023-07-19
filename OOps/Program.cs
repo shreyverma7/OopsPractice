@@ -1,14 +1,15 @@
-﻿using OOPs.DataInventoryManagement;
+﻿using OOps.InventoryManagement;
+using OOPs.DataInventoryManagement;
 using System.Collections.Generic;
 
 internal class Program
 {
-    //------>List of Object
-    static string inventory_filePath = @"D:\Bridgelabz Problem statement\OopsPractice\OOps\DataInventoryManagement\InventoryData.json";
+    //------>Object of list
+    static string inventory_filePath = @"D:\Bridgelabz Problem statement\OopsPractice\OOps\InventoryManagement\InventoryMangementData.json";
     private static void Main(string[] args)
     {
         Console.WriteLine("Welcome To Inventory Management");
-        InventoryDetailsOperation details = new InventoryDetailsOperation();
+        InventoryManagementOperation details = new InventoryManagementOperation();
         details.ReadInventoryJson(inventory_filePath);
     }
 }
