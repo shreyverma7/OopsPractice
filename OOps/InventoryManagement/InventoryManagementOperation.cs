@@ -90,8 +90,8 @@ namespace OOps.InventoryManagement
                 if (details != null)
                     list.PulseList.Remove(details);
             }
-            if(details == null)
-                Console.WriteLine("NO inventory Details Exists")
+            if (details == null)
+                Console.WriteLine("NO inventory Details Exists");
         }
 
     }

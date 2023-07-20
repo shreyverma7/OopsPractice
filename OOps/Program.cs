@@ -44,6 +44,7 @@ internal class Program
                     Console.WriteLine("Enter the data on " + Crops + " To delete :");
                     string data = Console.ReadLine();
                     details.DeleteInventoryItems(Crops, data);
+                    details.WriteToJsonFile(inventory_filePath);
                     Console.WriteLine("\n");
                     break;
                 case 4:
