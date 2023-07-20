@@ -31,39 +31,25 @@ namespace OOps.InventoryManagement
         }
         public void AddInventoryManagement(string objectName)
         {
+            InventoryDetails details = new InventoryDetails()
+            {
+                Name = Console.ReadLine(),
+                Weight = Convert.ToInt32(Console.ReadLine()),
+                PricePerKg = Convert.ToInt32(Console.ReadLine())
+            };
             if (objectName.ToLower().Equals("rice"))
             {
                 Console.WriteLine("Enter RiceType , Weight, Price per kg");
-                InventoryDetails details = new InventoryDetails()
-                {
-                    Name = Console.ReadLine(),
-                    Weight = Convert.ToInt32(Console.ReadLine()),
-                    PricePerKg = Convert.ToInt32(Console.ReadLine())
-                };
                 list.RiceList.Add(details);
             }
             if (objectName.ToLower().Equals("wheat"))
             {
                 Console.WriteLine("Enter WheatType , Weight, Price per kg");
-                InventoryDetails details = new InventoryDetails()
-                {
-
-
-                    Name = Console.ReadLine(),
-                    Weight = Convert.ToInt32(Console.ReadLine()),
-                    PricePerKg = Convert.ToInt32(Console.ReadLine())
-                };
                 list.WheatList.Add(details);
             }
             if (objectName.ToLower().Equals("pulse"))
             {
                 Console.WriteLine("Enter PulseType , Weight, Price per kg");
-                InventoryDetails details = new InventoryDetails()
-                {
-                    Name = Console.ReadLine(),
-                    Weight = Convert.ToInt32(Console.ReadLine()),
-                    PricePerKg = Convert.ToInt32(Console.ReadLine())
-                };
                 list.PulseList.Add(details);
             }
         }
@@ -72,57 +58,40 @@ namespace OOps.InventoryManagement
             var json = JsonConvert.SerializeObject(list);
             File.WriteAllText(filePath, json);
         }
-        public void DeleteInventoryItem(string objectName, string itemName)
-        {
+        public void DeleteInventoryItems(string objectName, string inventoryName) {
+            InventoryDetails details = new InventoryDetails();
             if (objectName.ToLower().Equals("rice"))
             {
-                var itemToRemove = list.RiceList.FirstOrDefault(item => item.Name.Equals(itemName, StringComparison.OrdinalIgnoreCase));
-                if (itemToRemove != null)
+                foreach (var data in list.RiceList)
                 {
-                    list.RiceList.Remove(itemToRemove);
-                    Console.WriteLine($"Deleted {objectName} item: {itemName}");
+                    if (data.Name.Equals(inventoryName))
+                        details = data;
                 }
-                else
-                {
-                    Console.WriteLine($"No {objectName} item found with the name: {itemName}");
-                }
+                if(details != null)
+                    list.RiceList.Remove(details);
             }
-            else if (objectName.ToLower().Equals("wheat"))
+            if (objectName.ToLower().Equals("wheat"))
             {
-                var itemToRemove = list.WheatList.FirstOrDefault(item => item.Name.Equals(itemName, StringComparison.OrdinalIgnoreCase));
-                if (itemToRemove != null)
+                foreach (var data in list.WheatList)
                 {
-                    list.WheatList.Remove(itemToRemove);
-                    Console.WriteLine($"Deleted {objectName} item: {itemName}");
+                    if (data.Name.Equals(inventoryName))
+                        details = data;
                 }
-                else
-                {
-                    Console.WriteLine($"No {objectName} item found with the name: {itemName}");
-                }
+                if (details != null)
+                    list.WheatList.Remove(details);
             }
-            else if (objectName.ToLower().Equals("pulse"))
+            if (objectName.ToLower().Equals("pulse"))
             {
-                var itemToRemove = list.PulseList.FirstOrDefault(item => item.Name.Equals(itemName, StringComparison.OrdinalIgnoreCase));
-                if (itemToRemove != null)
+                foreach (var data in list.PulseList)
                 {
-                    list.PulseList.Remove(itemToRemove);
-                    Console.WriteLine($"Deleted {objectName} item: {itemName}");
+                    if (data.Name.Equals(inventoryName))
+                        details = data;
                 }
-                else
-                {
-                    Console.WriteLine($"No {objectName} item found with the name: {itemName}");
-                }
+                if (details != null)
+                    list.PulseList.Remove(details);
             }
-            else
-            {
-                Console.WriteLine("Invalid object name. Supported names: rice, wheat, pulse");
-            }
-
-            WriteToJsonFile("D:\\Bridgelabz Problem statement\\OopsPractice\\OOps\\InventoryManagement\\InventoryMangementData.json");
-
-
-
-
+            if(details == null)
+                Console.WriteLine("NO inventory Details Exists")
         }
 
     }

@@ -22,7 +22,7 @@ internal class Program
         while (flag)
         {
             Console.WriteLine("\n");
-            Console.WriteLine("Enter input :\n1.Reading Inventory \n2.Adding to inventory \n3.Delete \n4.Exit");
+            Console.WriteLine("Enter input :\n1.Reading Inventory \n2.Adding to inventory \n3.Delete \n4.Overwrite \n5.Exit");
             int option = Convert.ToInt32(Console.ReadLine());
             switch (option)
             {
@@ -36,7 +36,6 @@ internal class Program
                     string input = Console.ReadLine();
                     Console.WriteLine("Adding " + input);
                     details.AddInventoryManagement(input);
-                    details.WriteToJsonFile(inventory_filePath);
                     Console.WriteLine("\n");
                     break;
                 case 3:
@@ -44,12 +43,21 @@ internal class Program
                     string Crops = Console.ReadLine();
                     Console.WriteLine("Enter the data on " + Crops + " To delete :");
                     string data = Console.ReadLine();
-                    details.DeleteInventoryItem(Crops, data);
+                    details.DeleteInventoryItems(Crops, data);
                     Console.WriteLine("\n");
                     break;
                 case 4:
+                    Console.WriteLine("To save changes in Json");
+                    details.WriteToJsonFile(inventory_filePath);
+                    break;
+                case 5:
                     flag = false;
                     break;
+                default:
+                    Console.WriteLine("Enter valid input");
+                    break;
+
+
 
             }
         }
