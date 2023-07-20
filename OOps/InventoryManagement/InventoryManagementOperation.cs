@@ -53,6 +53,31 @@ namespace OOps.InventoryManagement
                 list.PulseList.Add(details);
             }
         }
+        public void AddInventoryManagement(string objectName,string name,int weight, int pricePerkg)
+        {
+            InventoryDetails details = new InventoryDetails()
+            {
+                Name = name,
+                Weight = weight,
+                PricePerKg = pricePerkg
+            };
+            if (objectName.ToLower().Equals("rice"))
+            {
+               
+                list.RiceList.Add(details);
+            }
+            if (objectName.ToLower().Equals("wheat"))
+            {
+               
+                list.WheatList.Add(details);
+            }
+            if (objectName.ToLower().Equals("pulse"))
+            {
+               
+                list.PulseList.Add(details);
+            }
+        }
+
         public void WriteToJsonFile(string filePath)
         {
             var json = JsonConvert.SerializeObject(list);
@@ -94,5 +119,33 @@ namespace OOps.InventoryManagement
                 Console.WriteLine("NO inventory Details Exists");
         }
 
+        public void EditInventoryItems(string objectName, string inventoryName)
+        {
+            InventoryDetails details = new InventoryDetails();
+            void common()
+            {
+                Console.WriteLine("Enter New Name ");
+                string name = Console.ReadLine();
+                Console.WriteLine("Enter New Weight  ");
+                int wgt = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Enter New PricePerkg ");
+                int ppk = Convert.ToInt32(Console.ReadLine());
+                AddInventoryManagement(objectName, name, wgt, ppk); //caling we add feature
+                DeleteInventoryItems(objectName, inventoryName); //deleting the exisiting one
+            }
+            if (objectName.ToLower().Equals("rice"))
+            {
+                foreach (var data in list.RiceList)
+                {
+                    if (data.Name.Equals(inventoryName))
+                        details = data;
+                }
+                if (details != null)
+                {
+                    common();
+                }
+            }
+           
+        }
     }
 }
